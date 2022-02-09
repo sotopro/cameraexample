@@ -1,5 +1,5 @@
 import React from 'react'
-import { Platform } from 'react-native' 
+import { Platform, Text, TouchableOpacity } from 'react-native' 
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 
 import { COLORS } from '../constants' 
@@ -29,7 +29,16 @@ const PlaceNavigator = () => (
         <PlaceStack.Screen
             name="Direcciones"
             component={PlaceListScreen}
-            options={{title: 'Direcciones'}} 
+            options={({navigation}) => (
+                {
+                    title: 'Direcciones',
+                    headerRight: () => (
+                        <TouchableOpacity onPress={() => navigation.navigate('Nuevo')}>
+                            <Text style={{ color: 'white', fontSize: 16, fontWeight: 'bold' }}>Crear</Text>
+                        </TouchableOpacity>
+                    )
+                }
+            )} 
         />
         <PlaceStack.Screen
             name="Detalle"
