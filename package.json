@@ -14,6 +14,8 @@
     "@react-navigation/native-stack": "^6.5.0",
     "react": "17.0.2",
     "react-native": "0.67.2",
+    "react-native-fs": "^2.18.0",
+    "react-native-image-picker": "^4.7.3",
     "react-native-safe-area-context": "^3.3.2",
     "react-native-screens": "^3.10.2",
     "react-redux": "^7.2.6",

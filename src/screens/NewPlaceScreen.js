@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, TextInput, ScrollView, Button } from 'react-nat
 import  { COLORS } from '../constants'
 import { useDispatch } from 'react-redux'
 import { addPlace } from '../store/places.actions'
+import ImageSelector from '../components/ImageSelector'
 const NewPlaceScreen = ({ navigation }) => {
     const dispatch = useDispatch()
     const [title, setTitle] = useState('')
@@ -14,10 +15,15 @@ const NewPlaceScreen = ({ navigation }) => {
         navigation.navigate('Direcciones')
     }
 
+    const handleOnImage = (uri) => {
+        console.warn(uri)
+    }
+
     return (
         <ScrollView>
             <View style={styles.container}>
                 <Text style={styles.label}>Titulo</Text>
+                <ImageSelector onImage={handleOnImage}/>
                 <TextInput 
                     style={styles.input}
                     onChangeText={handleTitleChange}
