@@ -5,25 +5,27 @@ import { useDispatch } from 'react-redux'
 import { addPlace } from '../store/places.actions'
 import ImageSelector from '../components/ImageSelector'
 const NewPlaceScreen = ({ navigation }) => {
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
     const [title, setTitle] = useState('')
+    const [image, setImage] = useState('')
 
     const handleTitleChange = (text) =>  setTitle(text)
 
     const handleSave = () => {
-        dispatch(addPlace(title))
+        console.warn({title, image})
+        dispatch(addPlace(title, image))
         navigation.navigate('Direcciones')
     }
 
-    const handleOnImage = (uri) => {
-        console.warn(uri)
+    const handleOnImage = (imageData) => {
+        setImage(imageData.uri)
     }
 
     return (
         <ScrollView>
             <View style={styles.container}>
                 <Text style={styles.label}>Titulo</Text>
-                <ImageSelector onImage={handleOnImage}/>
+                <ImageSelector onImage={handleOnImage} />
                 <TextInput 
                     style={styles.input}
                     onChangeText={handleTitleChange}
