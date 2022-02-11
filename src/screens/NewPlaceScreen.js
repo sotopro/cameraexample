@@ -4,10 +4,12 @@ import  { COLORS } from '../constants'
 import { useDispatch } from 'react-redux'
 import { addPlace } from '../store/places.actions'
 import ImageSelector from '../components/ImageSelector'
+import LocationSelector from '../components/LocationSelector'
 const NewPlaceScreen = ({ navigation }) => {
     const dispatch = useDispatch()
     const [title, setTitle] = useState('');
     const [image, setImage] = useState('');
+    const [location, setLocation] = useState(null);
 
     const handleTitleChange = (text) =>  setTitle(text)
 
@@ -20,11 +22,16 @@ const NewPlaceScreen = ({ navigation }) => {
         setImage(uri)
     }
 
+    const handleOnLocation = (position) => {
+        setLocation(position)
+    }
+
     return (
         <ScrollView>
             <View style={styles.container}>
                 <Text style={styles.label}>Titulo</Text>
                 <ImageSelector onImage={handleOnImage}/>
+                <LocationSelector onLocation={handleOnLocation}/>
                 <TextInput 
                     style={styles.input}
                     onChangeText={handleTitleChange}
