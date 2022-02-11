@@ -2,6 +2,7 @@ import React , {useState} from 'react'
 import { View, Text, StyleSheet, Alert, Button } from 'react-native'
 import { COLORS } from '../../constants';
 import Geolocation from '@react-native-community/geolocation';
+import MapPreview from '../MapPreview/index';
 
 const LocationSelector = ({ onLocation }) => {
     const [pickedLocation, setPickedLocation] = useState('');
@@ -40,13 +41,19 @@ const LocationSelector = ({ onLocation }) => {
 
     return (
         <View style={styles.container}>
-            <View style={styles.preview}>
+            {/* <View style={styles.preview}>
                 {pickedLocation ? 
                     <Text>{pickedLocation.latitude}, {pickedLocation.longitude}</Text> :
                     <Text>No hay una ubicación seleccionada</Text>
                     
                 }
-            </View>
+            </View> */}
+            <MapPreview
+                location={pickedLocation}
+                style={styles.preview}
+            >
+                <Text>No hay una ubicación seleccionada</Text>
+            </MapPreview>
             <Button
                 title="Seleccionar ubicación"
                 color={COLORS.PEACH_PUFF}
