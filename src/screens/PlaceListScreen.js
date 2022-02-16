@@ -15,7 +15,7 @@ const PlaceListScreen = ({ navigation }) => {
         <PlaceItem 
             title={item.title}
             image={item.image}
-            address='123 street, city, country'
+            address={item.address}
             onSelect={onSelectDetail}
         />
     )

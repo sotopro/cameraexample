@@ -1,1 +1,1 @@
-export const MAPS_KEY = 'E'
+export const MAPS_KEY = ''
