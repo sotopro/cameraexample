@@ -1,6 +1,10 @@
 import RNFS from 'react-native-fs';
 import { MAPS_KEY } from '../constants/maps'; 
+import { insertAddress, fetchAddress } from '../db';
 export const ADD_PLACE = 'ADD_PLACE'
+export const LOAD_PLACE = 'LOAD_PLACE'
+
+
 
 
 export const addPlace = (title, image, location) => {
@@ -24,9 +28,12 @@ export const addPlace = (title, image, location) => {
 
         try {
             await RNFS.copyFile(image, Path);
+
+            const result = await insertAddress(title, Path, address, latitude, longitude);
             dispatch({
                 type: ADD_PLACE,
                 payload: {
+                    id: result.insertId,
                     title,
                     image: Path,
                     address,
@@ -34,8 +41,25 @@ export const addPlace = (title, image, location) => {
                     longitude
                 }
             });
+            
+            console.warn('add', result);
         } catch (e) {
             console.log(e);
+        }
+    }
+}
+
+export const loadPlaces = () => {
+    return async dispatch => {
+        try {
+            const places = await fetchAddress();
+            dispatch({
+                type: LOAD_PLACE,
+                payload: places
+            })
+        }
+        catch (e) {
+            console.warn(e);
         }
     }
 }
